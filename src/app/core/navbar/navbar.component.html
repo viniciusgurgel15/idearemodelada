@@ -1,0 +1,39 @@
+<nav class="navbar navbar-dark bg-dark">
+  <span class="text-light">AgendaApp</span>
+  <a class="text-light" href=";">Administrador (user)</a>
+</nav>
+
+<div id="viewport">
+  <!-- Sidebar -->
+  <div id="sidebar">
+    <ul class="nav flex-column">
+      <li routerLinkActive="active">
+        <a class="nav-link" routerLink="/pacientes">
+          <i class="material-icons">pregnant_woman</i>Pacientes</a
+        >
+      </li>
+      <li routerLinkActive="active">
+        <a class="nav-link" routerLink="/medicos">
+          <i class="material-icons">local_hospital</i>Médicos</a
+        >
+      </li>
+      <li routerLinkActive="active">
+        <a class="nav-link" routerLink="/usuarios">
+          <i class="material-icons">supervised_user_circle</i>Usuários</a
+        >
+      </li>
+      <li routerLinkActive="active">
+        <a class="nav-link" routerLink="/agendamentos" tabindex="-1">
+          <i class="material-icons">
+            schedule
+          </i>
+          Consultas</a
+        >
+      </li>
+    </ul>
+  </div>
+  <!-- Content -->
+  <div id="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

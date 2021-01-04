@@ -1,0 +1,78 @@
+<div class="card w-100">
+  <div class="card-body">
+    <h5 class="card-title">
+      {{ agendamento.Id ? 'Edição' : 'Cadastro' }} de agendamento
+    </h5>
+    <form #formAgendamento="ngForm" (ngSubmit)="save(formAgendamento)">
+      <div class="form-row">
+        <div class="form-group col-md-5">
+          <label for="inputPaciente">Paciente</label>
+          <select
+            id="inputPaciente"
+            class="form-control"
+            required
+            name="agendamento.PacienteId "
+            [(ngModel)]="agendamento.PacienteId"
+          >
+            <option value="" selected>Selecione</option>
+            <option
+              *ngFor="let paciente of pacientes"
+              value="{{ paciente.Id }}"
+            >
+              {{ paciente.Nome }}</option
+            >
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputMedico">Médico</label>
+          <select
+            id="inputMedico"
+            class="form-control"
+            name="agendamento.MedicoId"
+            required
+            [(ngModel)]="agendamento.MedicoId"
+          >
+            <option value="">Selecione</option>
+            <option
+              [(selected)]="agendamento.MedicoId == medico.Id"
+              *ngFor="let medico of medicos"
+              value="{{ medico.Id }}"
+            >
+              {{ medico.Nome }}</option
+            >
+          </select>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputDdd">Data</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputData"
+            required
+            name="data"
+            #data="ngModel"
+            [ngModel]="agendamento.Data | date: 'dd/MM/yyyy'"
+            minlength="10"
+            maxlength="10"
+          />
+        </div>
+      </div>
+      <div class="d-flex flex-row-reverse">
+        <button
+          type="submit"
+          class="btn  btn-primary"
+          [disabled]="!formAgendamento.valid && formAgendamento.dirty"
+        >
+          Salvar agendamento
+        </button>
+        <button
+          type="button"
+          routerLink="/agendamentos"
+          class="btn btn-light mr-2"
+        >
+          Voltar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

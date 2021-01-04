@@ -1,0 +1,248 @@
+<div class="card w-100">
+  <div class="card-body">
+    <h5 class="card-title">
+      {{ medico.Id ? 'Edição' : 'Cadastro' }} de médico
+    </h5>
+    <form #formMedico="ngForm" (ngSubmit)="save()">
+      <div class="form-group">
+        <label for="inputNome">Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': nome.invalid && nome.dirty,
+            'is-valid': nome.valid && nome.dirty
+          }"
+          id="inputNome"
+          name="nome"
+          required
+          minlength="3"
+          ngModel
+          #nome="ngModel"
+          [(ngModel)]="medico.Nome"
+        />
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-8">
+          <label for="inputEmail">E-mail</label>
+          <input
+            type="email"
+            class="form-control"
+            id="inputEmai"
+            name="email"
+            email
+            required
+            #email="ngModel"
+            [(ngModel)]="medico.Email"
+            [ngClass]="{
+              'is-invalid': email.invalid && email.dirty,
+              'is-valid': email.valid && email.dirty
+            }"
+          />
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputCpf">CPF</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputCpf"
+            name="cpf"
+            maxlength="11"
+            minlength="11"
+            #cpf="ngModel"
+            required
+            [(ngModel)]="medico.Cpf"
+            [ngClass]="{
+              'is-invalid': cpf.invalid && cpf.dirty,
+              'is-valid': cpf.valid && cpf.dirty
+            }"
+          />
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputRg">RG</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputRg"
+            name="rg"
+            #rg="ngModel"
+            [(ngModel)]="medico.Rg"
+            [ngClass]="{
+              'is-invalid': rg.invalid && rg.dirty,
+              'is-valid': rg.valid && rg.dirty
+            }"
+            required
+            maxlength="9"
+            minlength="9"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="inputCep">CEP</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputCep"
+            name="cep"
+            #cep="ngModel"
+            required
+            [(ngModel)]="medico.Endereco.Cep"
+            [ngClass]="{
+              'is-invalid': cep.invalid && cep.dirty,
+              'is-valid': cep.valid && cep.dirty
+            }"
+            required
+            maxlength="8"
+            minlength="8"
+          />
+        </div>
+        <div class="form-group col-md-8">
+          <label for="inputLogradouro">Logradouro</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputLogradouro"
+            required
+            name="logradouro"
+            #logradouro="ngModel"
+            [(ngModel)]="medico.Endereco.Logradouro"
+            maxlength="60"
+            minlength="5"
+            [ngClass]="{
+              'is-invalid': logradouro.invalid && logradouro.dirty,
+              'is-valid': logradouro.valid && logradouro.dirty
+            }"
+          />
+        </div>
+        <div class="form-group col-md-2">
+          <label for="inputNumero">Nº</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputNumero"
+            name="numero"
+            required
+            #numero="ngModel"
+            [(ngModel)]="medico.Endereco.Numero"
+            minlength="1"
+            maxlength="5"
+            [ngClass]="{
+              'is-invalid': numero.invalid && numero.dirty,
+              'is-valid': numero.valid && numero.dirty
+            }"
+          />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-8">
+          <label for="inputCidade">Cidade</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputCidade"
+            required
+            minlength="3"
+            maxlength="90"
+            name="cidade"
+            #cidade="ngModel"
+            [(ngModel)]="medico.Endereco.Cidade"
+            [ngClass]="{
+              'is-invalid': cidade.invalid && cidade.dirty,
+              'is-valid': cidade.valid && cidade.dirty
+            }"
+          />
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputEstado">Estado</label>
+          <select
+            id="inputEstado"
+            class="form-control"
+            name="estado"
+            #estado="ngModel"
+            required
+            [(ngModel)]="medico.Endereco.Estado"
+            [ngClass]="{
+              'is-invalid': estado.invalid && estado.dirty,
+              'is-valid': estado.valid && estado.dirty
+            }"
+          >
+            <option value="">Selecione</option>
+            <option value="SP">SP</option>
+            <option value="MG">MG</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-1">
+          <label for="inputDdd">DDD</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputDdd"
+            required
+            name="ddd"
+            #ddd="ngModel"
+            [(ngModel)]="medico.Telefone.Ddd"
+            [ngClass]="{
+              'is-invalid': ddd.invalid && ddd.dirty,
+              'is-valid': ddd.valid && ddd.dirty
+            }"
+            minlength="2"
+            maxlength="2"
+          />
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputTelefone">Nº</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputTelefone"
+            name="telefone"
+            required
+            minlength="8"
+            maxlength="9"
+            #telefone="ngModel"
+            [(ngModel)]="medico.Telefone.Numero"
+            [ngClass]="{
+              'is-invalid': telefone.invalid && telefone.dirty,
+              'is-valid': telefone.valid && telefone.dirty
+            }"
+          />
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputTipoTelefone">Tipo</label>
+          <select
+            id="inputTipoTelefone"
+            class="form-control"
+            name="tipoTelefone"
+            #tipoTelefone="ngModel"
+            required
+            [(ngModel)]="medico.Telefone.Tipo.Id"
+            [ngClass]="{
+              'is-invalid': tipoTelefone.invalid && tipoTelefone.dirty,
+              'is-valid': tipoTelefone.valid && tipoTelefone.dirty
+            }"
+          >
+            <option value="" selected>Selecione</option>
+            <option value="1">Telefone</option>
+            <option value="2">Celular</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-flex flex-row-reverse">
+        <button
+          type="submit"
+          class="btn  btn-primary"
+          [disabled]="!formMedico.valid && formMedico.dirty"
+        >
+          Salvar usuário
+        </button>
+        <button type="button" routerLink="/medicos" class="btn btn-light mr-2">
+          Voltar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
